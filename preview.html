@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brief de travail — Projet Trophées NSI</title>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #000000;
+      --muted: #555555;
+      --soft: #f3f3f3;
+      --line: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      border-radius: 0 !important;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #000;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0 100px;
+    }
+
+    header {
+      border-top: 8px solid #000;
+      border-bottom: 2px solid #000;
+      padding: 28px 0 30px;
+      margin-bottom: 42px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(36px, 6vw, 74px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      font-weight: 850;
+    }
+
+    .subtitle {
+      max-width: 850px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .badge {
+      border: 1px solid #000;
+      padding: 6px 9px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .badge.dark {
+      background: #000;
+      color: #fff;
+    }
+
+    nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid #000;
+      margin-bottom: 52px;
+    }
+
+    nav a {
+      padding: 14px 16px;
+      border-right: 1px solid #000;
+      border-bottom: 1px solid #000;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    nav a:nth-child(3n) {
+      border-right: none;
+    }
+
+    nav a:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    section {
+      margin: 70px 0;
+    }
+
+    .section-number {
+      margin-bottom: 5px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #000;
+      font-size: clamp(27px, 4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin: 34px 0 12px;
+      font-size: 21px;
+      line-height: 1.2;
+    }
+
+    p {
+      max-width: 880px;
+      margin: 0 0 16px;
+    }
+
+    ul {
+      margin: 12px 0 24px;
+      padding-left: 23px;
+    }
+
+    li {
+      margin: 7px 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid #000;
+      padding: 22px;
+    }
+
+    .card.black {
+      background: #000;
+      color: #fff;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 10px;
+      border-bottom: 2px solid currentColor;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .fact {
+      border-left: 7px solid #000;
+      background: var(--soft);
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+
+    .warning {
+      border: 2px solid #000;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .warning strong {
+      display: block;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    code,
+    pre {
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+    }
+
+    pre {
+      overflow-x: auto;
+      border: 1px solid #000;
+      background: #000;
+      color: #fff;
+      padding: 20px;
+      line-height: 1.5;
+      font-size: 13px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 22px 0 28px;
+    }
+
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 11px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      border: 1px solid #000;
+      margin: 20px 0;
+    }
+
+    .flow div {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border-right: 1px solid #000;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .flow div:last-child {
+      border-right: none;
+    }
+
+    .flow div:nth-child(even) {
+      background: #000;
+      color: #fff;
+    }
+
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .checklist li {
+      position: relative;
+      padding: 12px 12px 12px 42px;
+      border-bottom: 1px solid #000;
+      margin: 0;
+    }
+
+    .checklist li::before {
+      content: "□";
+      position: absolute;
+      left: 10px;
+      top: 9px;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .source-status {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin: 25px 0;
+      border: 1px solid #000;
+    }
+
+    .source-status > div {
+      padding: 18px;
+      border-right: 1px solid #000;
+    }
+
+    .source-status > div:last-child {
+      border-right: none;
+    }
+
+    footer {
+      margin-top: 90px;
+      border-top: 8px solid #000;
+      padding-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        width: min(100% - 24px, 1120px);
+        padding-top: 24px;
+      }
+
+      nav,
+      .grid-2,
+      .grid-3,
+      .source-status,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      nav a,
+      .source-status > div,
+      .flow div {
+        border-right: none;
+        border-bottom: 1px solid #000;
+      }
+
+      .flow div:last-child,
+      .source-status > div:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media print {
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      nav {
+        display: none;
+      }
+
+      section {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <header>
+      <p class="eyebrow">Document de travail / Trophées NSI</p>
+
+      <h1>
+        Préparation stratégique d’un projet NSI
+      </h1>
+
+      <p class="subtitle">
+        Synthèse provisoire destinée à préparer le choix, l’architecture,
+        la présentation et le déploiement d’un futur projet pour les
+        Trophées NSI, avec comme contexte le Lycée Les Eucalyptus à Nice.
+      </p>
+
+      <div class="status">
+        <span class="badge dark">Document provisoire</span>
+        <span class="badge">Académie de Nice</span>
+        <span class="badge">Lycée Les Eucalyptus</span>
+        <span class="badge">NSI</span>
+      </div>
+    </header>
+
+
+    <nav>
+      <a href="#concours">Concours</a>
+      <a href="#stack">Stack</a>
+      <a href="#machine">Machine cible</a>
+      <a href="#jury">Jury</a>
+      <a href="#douleurs">Douleurs</a>
+      <a href="#livraison">Livraison</a>
+      <a href="#presentation">Présentation</a>
+      <a href="#precedents">Projets précédents</a>
+      <a href="#hypotheses">Hypothèses</a>
+    </nav>
+
+
+    <section id="concours">
+      <div class="section-number">01 / Contexte</div>
+      <h2>Trophées NSI</h2>
+
+      <p>
+        Le projet doit être pensé comme un projet informatique réel,
+        mais rester clairement lié aux connaissances et compétences
+        attendues dans la spécialité NSI.
+      </p>
+
+      <div class="fact">
+        <strong>Point central :</strong>
+        un bon projet ne doit pas uniquement avoir une interface agréable.
+        Le jury doit pouvoir identifier une véritable contribution
+        algorithmique, technique et personnelle des élèves.
+      </div>
+
+      <h3>Objectif de conception</h3>
+
+      <p>
+        Créer un projet dont l’utilité est immédiatement compréhensible,
+        dont le fonctionnement est facile à reproduire, et dont le code
+        révèle une vraie profondeur informatique.
+      </p>
+    </section>
+
+
+    <section id="stack">
+      <div class="section-number">02 / Technologies</div>
+      <h2>Stack de référence</h2>
+
+      <div class="grid-2">
+
+        <div class="card">
+          <span class="label">À privilégier</span>
+
+          <ul>
+            <li>Python 3</li>
+            <li>SQL</li>
+            <li>SQLite</li>
+            <li>Shell / scripts simples</li>
+            <li>Tkinter si interface desktop</li>
+            <li>HTML / CSS en complément</li>
+            <li>JavaScript client si réellement nécessaire</li>
+          </ul>
+        </div>
+
+        <div class="card black">
+          <span class="label">À éviter ou limiter</span>
+
+          <ul>
+            <li>Dépendances très lourdes</li>
+            <li>Serveurs externes obligatoires</li>
+            <li>Docker comme prérequis</li>
+            <li>GPU obligatoire</li>
+            <li>Modèles IA locaux volumineux</li>
+            <li>Matériel spécifique</li>
+            <li>Dépendance au réseau interne du lycée</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <h3>Principe architectural</h3>
+
+      <pre>PROBLÈME
+   ↓
+DONNÉES
+   ↓
+STRUCTURE DE DONNÉES
+   ↓
+ALGORITHME DÉVELOPPÉ PAR L'ÉQUIPE
+   ↓
+RÉSULTAT
+   ↓
+INTERFACE UTILISATEUR</pre>
+
+      <p>
+        Les bibliothèques doivent servir le projet, mais elles ne doivent
+        pas devenir le projet lui-même.
+      </p>
+    </section>
+
+
+    <section id="machine">
+      <div class="section-number">03 / Environnement</div>
+      <h2>Machine minimale de référence</h2>
+
+      <p>
+        Une machine observée au Lycée Les Eucalyptus sert pour l’instant
+        de référence basse pour tester la compatibilité du futur projet.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Élément</th>
+            <th>Valeur actuelle</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Constructeur</td>
+            <td>Lenovo</td>
+            <td>Confirmé</td>
+          </tr>
+
+          <tr>
+            <td>Identifiant observé</td>
+            <td>Lenovo-1700</td>
+            <td>À identifier précisément</td>
+          </tr>
+
+          <tr>
+            <td>Système</td>
+            <td>Windows 10</td>
+            <td>Probable / observé</td>
+          </tr>
+
+          <tr>
+            <td>BIOS</td>
+            <td>American Megatrends</td>
+            <td>Observé</td>
+          </tr>
+
+          <tr>
+            <td>Mémoire physique</td>
+            <td>≈ 4 Go</td>
+            <td>Très probable</td>
+          </tr>
+
+          <tr>
+            <td>Mémoire disponible lors du relevé</td>
+            <td>≈ 450 Mo</td>
+            <td>Très probable</td>
+          </tr>
+
+          <tr>
+            <td>Domaine réseau</td>
+            <td>lyc.eucalyptus-06.regime-paca.lan</td>
+            <td>Observé</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning">
+        <strong>Règle de conception</strong>
+        Le Lenovo-1700 doit être considéré comme une machine minimale
+        de test, et non comme la plateforme unique du projet.
+      </div>
+
+      <h3>Objectifs de compatibilité</h3>
+
+      <ul>
+        <li>Fonctionnement correct avec environ 4 Go de RAM.</li>
+        <li>Pas de GPU obligatoire.</li>
+        <li>Pas de droits administrateur nécessaires.</li>
+        <li>Démarrage rapide.</li>
+        <li>Fonctionnement hors ligne pour les fonctions principales.</li>
+        <li>Consommation mémoire raisonnable.</li>
+      </ul>
+    </section>
+
+
+    <section id="jury">
+      <div class="section-number">04 / Persona</div>
+      <h2>Archétype de jury</h2>
+
+      <p>
+        L’objectif n’est pas de deviner une personne précise mais de
+        construire une persona suffisamment réaliste pour guider les
+        décisions de conception.
+      </p>
+
+      <div class="card black">
+        <span class="label">Persona de référence</span>
+
+        <h3>
+          Évaluateur techniquement compétent,
+          avec peu de temps disponible
+        </h3>
+
+        <p>
+          Professeur de NSI, enseignant du supérieur, développeur,
+          ingénieur informatique, chercheur ou étudiant avancé en
+          informatique.
+        </p>
+
+        <p>
+          Il sait lire du Python, comprend les algorithmes et les
+          structures de données et peut rapidement distinguer un vrai
+          travail algorithmique d’une simple intégration de bibliothèques.
+        </p>
+      </div>
+
+      <h3>Questions probables dans son esprit</h3>
+
+      <ul>
+        <li>Quel problème ce projet résout-il ?</li>
+        <li>Pourquoi est-il utile ?</li>
+        <li>Qu’est-ce qui a réellement été développé par les élèves ?</li>
+        <li>Où est l’algorithmique ?</li>
+        <li>Pourquoi cette structure de données ?</li>
+        <li>Pourquoi cette bibliothèque ?</li>
+        <li>Le projet fonctionne-t-il vraiment ?</li>
+        <li>Puis-je le reproduire facilement ?</li>
+        <li>Les élèves comprennent-ils leurs propres choix ?</li>
+      </ul>
+    </section>
+
+
+    <section id="douleurs">
+      <div class="section-number">05 / Frictions</div>
+      <h2>Douleurs possibles du jury</h2>
+
+      <div class="grid-3">
+
+        <div class="card">
+          <span class="label">01</span>
+          <h3>Démarrage difficile</h3>
+
+          <p>
+            Dépendances cassées, chemins absolus, clés API, configuration
+            manuelle ou erreurs dès le premier lancement.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="label">02</span>
+          <h3>Projet difficile à comprendre</h3>
+
+          <p>
+            L’objectif, l’utilisateur ou la valeur du projet ne sont pas
+            évidents dans les premières minutes.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="label">03</span>
+          <h3>Peu de travail propre</h3>
+
+          <p>
+            La partie impressionnante est essentiellement fournie par une
+            API, un framework ou une bibliothèque externe.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="label">04</span>
+          <h3>Complexité artificielle</h3>
+
+          <p>
+            Trop de technologies ou d’architecture pour une tâche qui
+            pourrait être résolue beaucoup plus simplement.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="label">05</span>
+          <h3>Autonomie douteuse</h3>
+
+          <p>
+            Difficulté à déterminer ce qui a été réellement développé
+            par les élèves, notamment en cas d’utilisation importante
+            d’IA générative.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="label">06</span>
+          <h3>Expérience non reproductible</h3>
+
+          <p>
+            Besoin d’un matériel, d’un compte, d’un serveur ou d’un réseau
+            que le jury ne possède pas.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="livraison">
+      <div class="section-number">06 / Distribution</div>
+      <h2>Expérience de lancement</h2>
+
+      <p>
+        L’objectif est de réduire le nombre d’étapes nécessaires avant
+        que le jury puisse voir le projet fonctionner.
+      </p>
+
+      <h3>Niveaux possibles</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Niveau</th>
+            <th>Méthode</th>
+            <th>Rôle</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><code>python main.py</code></td>
+            <td>Chemin principal et reproductible</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td><code>RUN_PROJECT.bat</code></td>
+            <td>Réduction de la friction sur Windows</td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>Version portable .exe</td>
+<td>Option pratique supplémentaire, jamais le seul moyen d’évaluer le projet</td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td>Installateur complet</td>
+            <td>Seulement si réellement nécessaire</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning">
+        <strong>Attention aux exécutables</strong>
+        Un fichier .exe non signé peut déclencher Windows SmartScreen
+        ou un antivirus. Il ne doit donc pas être l’unique méthode
+        permettant d’évaluer le projet.
+      </div>
+
+      <pre>git clone ...
+pip install -r requirements.txt
+python main.py</pre>
+
+      <p>
+        Ce chemin doit rester simple, documenté et fiable.
+      </p>
+    </section>
+<section id="verification">
+  <div class="section-number">06B / Vérification par le jury</div>
+  <h2>Comment le projet sera vérifié</h2>
+
+  <p>
+    Le projet doit pouvoir être évalué de manière autonome par le jury,
+    dans un environnement distinct de celui du lycée. L’objectif principal
+    est la reproductibilité : le jury doit pouvoir comprendre, lancer,
+    tester et inspecter le projet sans dépendre de la machine des auteurs.
+  </p>
+
+  <h3>Éléments disponibles pour l’évaluation</h3>
+
+  <ul>
+    <li>Vidéo de démonstration.</li>
+    <li><code>presentation.md</code>.</li>
+    <li>Code source.</li>
+    <li><code>README.md</code>.</li>
+    <li><code>requirements.txt</code>.</li>
+    <li>Données ou exemples nécessaires à la démonstration.</li>
+    <li>Documentation technique éventuelle.</li>
+  </ul>
+
+  <h3>Scénario de vérification attendu</h3>
+
+  <div class="flow">
+    <div>Comprendre le projet</div>
+    <div>Installer les dépendances</div>
+    <div>Lancer</div>
+    <div>Tester un exemple</div>
+    <div>Vérifier le résultat</div>
+    <div>Lire le code</div>
+    <div>Consulter la documentation</div>
+  </div>
+
+  <h3>Le lancement doit fonctionner simplement</h3>
+
+  <pre>pip install -r requirements.txt
+python main.py</pre>
+
+  <p>
+    Aucune modification manuelle du code, aucun chemin absolu et aucune
+    configuration locale spécifique au Lycée Les Eucalyptus ne doivent
+    être nécessaires.
+  </p>
+
+  <h3>Points susceptibles d’être vérifiés</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Point</th>
+        <th>Attente</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Dépendances</td>
+        <td>Installation complète depuis <code>requirements.txt</code>.</td>
+      </tr>
+
+      <tr>
+        <td>Démarrage</td>
+        <td>Le projet démarre sans modification manuelle.</td>
+      </tr>
+
+      <tr>
+        <td>Données</td>
+        <td>Un jeu de données de démonstration est disponible localement.</td>
+      </tr>
+
+      <tr>
+        <td>Internet</td>
+        <td>La fonctionnalité principale reste testable hors ligne.</td>
+      </tr>
+
+      <tr>
+        <td>Permissions</td>
+        <td>Pas de droits administrateur nécessaires.</td>
+      </tr>
+
+      <tr>
+        <td>Code</td>
+        <td>La partie développée par les élèves est identifiable et lisible.</td>
+      </tr>
+
+      <tr>
+        <td>Algorithmes</td>
+        <td>Les choix algorithmiques et les structures de données sont visibles.</td>
+      </tr>
+
+      <tr>
+        <td>Reproductibilité</td>
+        <td>Le scénario présenté dans la vidéo peut être reproduit.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Erreurs à éviter pendant la vérification</h3>
+
+  <pre>ModuleNotFoundError
+FileNotFoundError
+API key missing
+Permission denied
+Connexion au serveur impossible
+Chemin local introuvable
+Version Python incompatible</pre>
+
+  <p>
+    Le projet doit afficher des messages compréhensibles lorsque
+    l’environnement n’est pas correct, plutôt qu’un traceback brut.
+  </p>
+
+  <h3>Test interne avant remise</h3>
+
+  <ul class="checklist">
+    <li>Tester depuis une copie propre du dépôt.</li>
+    <li>Installer uniquement avec <code>requirements.txt</code>.</li>
+    <li>Lancer avec <code>python main.py</code>.</li>
+    <li>Tester sans IDE.</li>
+    <li>Tester sans droits administrateur.</li>
+    <li>Tester sans connexion Internet.</li>
+    <li>Tester le scénario de démonstration complet.</li>
+    <li>Redémarrer le projet après fermeture.</li>
+    <li>Tester sur la machine Lenovo-1700 du lycée.</li>
+    <li>Vérifier la consommation mémoire.</li>
+  </ul>
+
+  <div class="warning">
+    <strong>Principe important</strong>
+    La machine Lenovo-1700 sert de référence basse de compatibilité.
+    Elle n’est pas la machine du jury et le projet ne doit dépendre ni
+    de son réseau, ni de sa configuration locale.
+  </div>
+</section>
+
+
+    <section id="presentation">
+      <div class="section-number">07 / Communication</div>
+      <h2>Présentation et compréhension</h2>
+
+      <p>
+        Le projet doit être compréhensible avant même que le jury ouvre
+        tous les fichiers du code source.
+      </p>
+
+      <h3>Structure souhaitable de la présentation</h3>
+
+      <pre># Le problème
+
+# Pourquoi il est intéressant
+
+# Notre idée
+
+# Comment cela fonctionne
+
+# Architecture
+
+# Algorithmes principaux
+
+# Ce que nous avons développé nous-mêmes
+
+# Difficultés rencontrées
+
+# Tests
+
+# Limites actuelles
+
+# Évolutions possibles</pre>
+
+      <h3>Trois niveaux de communication</h3>
+
+      <div class="flow">
+        <div>Idée comprise</div>
+        <div>Vidéo</div>
+        <div>Présentation</div>
+        <div>Application</div>
+        <div>Code</div>
+        <div>Documentation</div>
+        <div>Conviction</div>
+      </div>
+
+      <h3>Mode démonstration</h3>
+
+      <p>
+        Une fonction de type <strong>« Essayer un exemple »</strong>
+        pourrait permettre au jury de tester immédiatement le scénario
+        principal sans préparer lui-même des données.
+      </p>
+
+      <pre>LANCEMENT
+   ↓
+ESSAYER UN EXEMPLE
+   ↓
+ALGORITHME PRINCIPAL
+   ↓
+RÉSULTAT VISIBLE
+   ↓
+DÉTAILS TECHNIQUES</pre>
+    </section>
+
+
+
+
+    <section id="precedents">
+      <div class="section-number">08 / Références</div>
+      <h2>Ce que montrent certains projets précédents</h2>
+
+      <p>
+        Les projets précédents ne permettent pas de déduire
+        automatiquement les goûts personnels du jury. Ils servent
+        cependant à identifier certains schémas intéressants.
+      </p>
+
+      <div class="grid-2">
+
+        <div class="card">
+          <h3>PyCraft</h3>
+
+          <p>
+            Idée immédiatement reconnaissable combinée à une réalisation
+            technique importante : environnement de type Minecraft,
+            génération, affichage et logique propres.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Linux.pyxel</h3>
+
+          <p>
+            Simulation d’un environnement inspiré de Linux avec plusieurs
+            commandes et outils développés dans le projet.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>TaM Desktop</h3>
+
+          <p>
+            Projet lié à un besoin réel de transport, avec une dimension
+            algorithmique de recherche d’itinéraire.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>WheelShare</h3>
+
+          <p>
+            Plateforme de covoiturage scolaire ayant effectivement
+            participé au concours mais n’ayant pas été sélectionnée.
+            La raison exacte n’est pas publique.
+          </p>
+        </div>
+
+      </div>
+
+      <h3>Hypothèse WheelShare</h3>
+
+      <p>
+        L’une des hypothèses à étudier est qu’un projet de plateforme
+        classique peut être utile sans montrer suffisamment vite une
+        profondeur algorithmique ou une originalité informatique.
+      </p>
+
+      <div class="warning">
+        <strong>Important</strong>
+        Cette explication n’est pas une justification officielle du jury.
+        Elle doit rester clairement identifiée comme hypothèse.
+      </div>
+    </section>
+
+
+    <section id="hypotheses">
+      <div class="section-number">09 / Recherche future</div>
+      <h2>Hypothèses à vérifier</h2>
+
+      <div class="source-status">
+        <div>
+          <span class="label">Confirmé</span>
+          <p>
+            Informations issues des règles, documents officiels ou
+            déclarations directes des participants.
+          </p>
+        </div>
+
+        <div>
+          <span class="label">Hypothèse</span>
+          <p>
+            Interprétations utiles pour guider le projet, mais qui doivent
+            encore être confrontées à plusieurs cas réels.
+          </p>
+        </div>
+
+        <div>
+          <span class="label">À vérifier</span>
+          <p>
+            Informations manquantes ou trop incertaines pour être
+            utilisées comme base de décision.
+          </p>
+        </div>
+      </div>
+
+      <ul>
+        <li>
+          Les projets de type CRUD, chatbot ou simple wrapper d’API
+          seraient-ils perçus comme moins intéressants ?
+        </li>
+
+        <li>
+          Une algorithmique clairement visible améliore-t-elle
+          significativement les résultats ?
+        </li>
+
+        <li>
+          La qualité du README et du démarrage influence-t-elle fortement
+          l’impression globale ?
+        </li>
+
+        <li>
+          Une application réellement utile mais techniquement classique
+          est-elle désavantagée face à un projet plus expérimental ?
+        </li>
+
+        <li>
+          Quels profils composent réellement les jurys territoriaux
+          de l’Académie de Nice ?
+        </li>
+
+        <li>
+          Quels projets ont été éliminés malgré une bonne qualité apparente ?
+        </li>
+
+        <li>
+          Quelles différences récurrentes apparaissent entre finalistes
+          et projets non retenus ?
+        </li>
+      </ul>
+    </section>
+
+
+    <section>
+      <div class="section-number">10 / Critères</div>
+      <h2>Checklist pour une future idée</h2>
+
+      <ul class="checklist">
+        <li>Le problème peut-il être expliqué en moins d’une minute ?</li>
+        <li>Le projet apporte-t-il une utilité ou une expérience claire ?</li>
+        <li>Existe-t-il un véritable problème algorithmique ?</li>
+        <li>Une partie centrale importante est-elle développée par l’équipe ?</li>
+        <li>Le code reste-t-il compréhensible par les élèves ?</li>
+        <li>Le projet peut-il fonctionner sur une machine avec 4 Go de RAM ?</li>
+        <li>Le projet fonctionne-t-il sans GPU ?</li>
+        <li>Peut-il fonctionner sans connexion Internet permanente ?</li>
+        <li>Peut-il être lancé facilement sur une machine inconnue ?</li>
+        <li>Les dépendances sont-elles limitées et justifiées ?</li>
+        <li>Le jury peut-il tester rapidement un exemple intéressant ?</li>
+        <li>La documentation explique-t-elle les décisions techniques ?</li>
+        <li>Les limites du projet sont-elles reconnues clairement ?</li>
+        <li>L’utilisation éventuelle d’IA est-elle transparente ?</li>
+        <li>Le projet reste-t-il intéressant lorsque l’on retire son interface graphique ?</li>
+      </ul>
+    </section>
+
+
+    <section>
+      <div class="section-number">11 / Vision</div>
+      <h2>Expérience idéale du jury</h2>
+
+      <pre>0:00
+Le jury comprend le sujet.
+
+0:30
+Il comprend le problème.
+
+3:00
+La vidéo montre une démonstration claire.
+
+5:00
+Le projet fonctionne sur sa machine.
+
+10:00
+Il identifie le cœur technique.
+
+20:00
+Il voit les choix algorithmiques et les structures de données.
+
+30:00
+Il comprend les difficultés, les tests, les limites
+et ce qui a réellement été développé par l'équipe.</pre>
+
+      <div class="card black">
+        <span class="label">Impression recherchée</span>
+
+        <h3>
+          « Ils ont réellement conçu ce projet, ils comprennent leurs
+          choix et il est facile pour moi de le vérifier. »
+        </h3>
+      </div>
+    </section>
+
+
+    <footer>
+      <p>
+        Document de synthèse provisoire. Les hypothèses concernant le jury
+        et les projets non retenus doivent être validées par une étude plus
+        large avant le choix définitif du projet.
+      </p>
+    </footer>
+
+  </main>
+</body>
+</html>
